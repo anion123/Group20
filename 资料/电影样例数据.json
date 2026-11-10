@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "title": "肖申克的救赎",
+    "originalTitle": "The Shawshank Redemption",
+    "year": 1994,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "犯罪"
+    ],
+    "director": "弗兰克·德拉邦特",
+    "originalRating": 9.7,
+    "rank": 1,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null
+  },
+  {
+    "id": 2,
+    "title": "霸王别姬",
+    "originalTitle": "Farewell My Concubine",
+    "year": 1993,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "陈凯歌",
+    "originalRating": 9.6,
+    "rank": 2,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null
+  },
+  {
+    "id": 3,
+    "title": "泰坦尼克号",
+    "originalTitle": "Titanic",
+    "year": 1997,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "詹姆斯·卡梅隆",
+    "originalRating": 9.5,
+    "rank": 3,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null
+  },
+  {
+    "id": 4,
+    "title": "阿甘正传",
+    "originalTitle": "Forrest Gump",
+    "year": 1994,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "罗伯特·泽米吉斯",
+    "originalRating": 9.5,
+    "rank": 4,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null
+  },
+  {
+    "id": 5,
+    "title": "千与千寻",
+    "originalTitle": "Spirited Away",
+    "year": 2001,
+    "region": "日本",
+    "genres": [
+      "动画",
+      "奇幻"
+    ],
+    "director": "宫崎骏",
+    "originalRating": 9.4,
+    "rank": 5,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null
+  },
+  {
+    "id": 6,
+    "title": "给阿嬷的情书",
+    "originalTitle": "Dear You",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "家庭"
+    ],
+    "director": "蓝鸿春",
+    "originalRating": 9.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。"
+  }
+]

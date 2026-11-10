@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.vscode/
+*.iml
+**/target/
+**/node_modules/
+*.mv.db
+*.trace.db
+.env
+.env.*
+!.env.example

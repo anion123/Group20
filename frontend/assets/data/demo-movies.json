@@ -1,0 +1,1758 @@
+[
+  {
+    "id": 1,
+    "title": "肖申克的救赎",
+    "originalTitle": "The Shawshank Redemption",
+    "year": 1994,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "犯罪"
+    ],
+    "director": "弗兰克·德拉邦特",
+    "originalRating": 9.7,
+    "rank": 1,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null,
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 2,
+    "title": "霸王别姬",
+    "originalTitle": "Farewell My Concubine",
+    "year": 1993,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "陈凯歌",
+    "originalRating": 9.6,
+    "rank": 2,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null,
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 3,
+    "title": "泰坦尼克号",
+    "originalTitle": "Titanic",
+    "year": 1997,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "詹姆斯·卡梅隆",
+    "originalRating": 9.5,
+    "rank": 3,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null,
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 4,
+    "title": "阿甘正传",
+    "originalTitle": "Forrest Gump",
+    "year": 1994,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "罗伯特·泽米吉斯",
+    "originalRating": 9.5,
+    "rank": 4,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null,
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 5,
+    "title": "千与千寻",
+    "originalTitle": "Spirited Away",
+    "year": 2001,
+    "region": "日本",
+    "genres": [
+      "动画",
+      "奇幻"
+    ],
+    "director": "宫崎骏",
+    "originalRating": 9.4,
+    "rank": 5,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "newChartRank": null,
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 6,
+    "title": "给阿嬷的情书",
+    "originalTitle": "Dear You",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "家庭"
+    ],
+    "director": "蓝鸿春",
+    "originalRating": 9.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地演示简介，待补充。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 101,
+    "title": "黑球",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "西班牙",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 8.7,
+    "rank": null,
+    "newChartRank": 1,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 102,
+    "title": "一切如你所见",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 8.8,
+    "rank": null,
+    "newChartRank": 2,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 103,
+    "title": "泥面人",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "澳大利亚",
+    "genres": [
+      "惊悚"
+    ],
+    "director": "待补充",
+    "originalRating": 8.0,
+    "rank": null,
+    "newChartRank": 3,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 104,
+    "title": "不存在的罪人",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "法国",
+    "genres": [
+      "悬疑"
+    ],
+    "director": "待补充",
+    "originalRating": 5.7,
+    "rank": null,
+    "newChartRank": 4,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 105,
+    "title": "逃出布迪秀",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.3,
+    "rank": null,
+    "newChartRank": 5,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 106,
+    "title": "末世行者",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "法国",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": 6,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 107,
+    "title": "杯雪一战成名",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "动作"
+    ],
+    "director": "待补充",
+    "originalRating": 7.5,
+    "rank": null,
+    "newChartRank": 7,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 108,
+    "title": "突如其来",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 7.7,
+    "rank": null,
+    "newChartRank": 8,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 109,
+    "title": "可能的爱",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "韩国",
+    "genres": [
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 8.7,
+    "rank": null,
+    "newChartRank": 9,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 110,
+    "title": "希望",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "韩国",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 5.5,
+    "rank": null,
+    "newChartRank": 10,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "用于课程项目页面雏形的本地展示数据，待后端小组成员提供正式样例。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 201,
+    "title": "美丽人生",
+    "originalTitle": "",
+    "year": 1997,
+    "region": "意大利",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.5,
+    "rank": 6,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 202,
+    "title": "这个杀手不太冷",
+    "originalTitle": "",
+    "year": 1994,
+    "region": "法国",
+    "genres": [
+      "剧情",
+      "动作"
+    ],
+    "director": "待补充",
+    "originalRating": 9.4,
+    "rank": 7,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 203,
+    "title": "机器人总动员",
+    "originalTitle": "",
+    "year": 2008,
+    "region": "美国",
+    "genres": [
+      "动画",
+      "科幻"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 8,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 204,
+    "title": "盗梦空间",
+    "originalTitle": "",
+    "year": 2010,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "科幻"
+    ],
+    "director": "待补充",
+    "originalRating": 9.4,
+    "rank": 9,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 205,
+    "title": "楚门的世界",
+    "originalTitle": "",
+    "year": 1998,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "科幻"
+    ],
+    "director": "待补充",
+    "originalRating": 9.4,
+    "rank": 10,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 206,
+    "title": "辛德勒的名单",
+    "originalTitle": "",
+    "year": 1993,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "历史"
+    ],
+    "director": "待补充",
+    "originalRating": 9.6,
+    "rank": 11,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 207,
+    "title": "忠犬八公的故事",
+    "originalTitle": "",
+    "year": 2009,
+    "region": "美国",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.4,
+    "rank": 12,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 208,
+    "title": "海上钢琴师",
+    "originalTitle": "",
+    "year": 1998,
+    "region": "意大利",
+    "genres": [
+      "剧情",
+      "音乐"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 13,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 209,
+    "title": "疯狂动物城",
+    "originalTitle": "",
+    "year": 2016,
+    "region": "美国",
+    "genres": [
+      "动画",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 14,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 210,
+    "title": "三傻大闹宝莱坞",
+    "originalTitle": "",
+    "year": 2009,
+    "region": "印度",
+    "genres": [
+      "剧情",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 15,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 211,
+    "title": "机器人总动员 WALL·E",
+    "originalTitle": "",
+    "year": 2008,
+    "region": "美国",
+    "genres": [
+      "动画",
+      "科幻"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 16,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 212,
+    "title": "绿皮书",
+    "originalTitle": "",
+    "year": 2018,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.9,
+    "rank": 17,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 213,
+    "title": "爱乐之城",
+    "originalTitle": "",
+    "year": 2016,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 8.4,
+    "rank": 18,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 214,
+    "title": "星际穿越",
+    "originalTitle": "",
+    "year": 2014,
+    "region": "美国",
+    "genres": [
+      "科幻",
+      "冒险"
+    ],
+    "director": "待补充",
+    "originalRating": 9.4,
+    "rank": 19,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 215,
+    "title": "沉默的羔羊",
+    "originalTitle": "",
+    "year": 1991,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "惊悚"
+    ],
+    "director": "待补充",
+    "originalRating": 8.9,
+    "rank": 20,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 216,
+    "title": "无间道",
+    "originalTitle": "",
+    "year": 2002,
+    "region": "中国香港",
+    "genres": [
+      "剧情",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 21,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 217,
+    "title": "教父",
+    "originalTitle": "",
+    "year": 1972,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 22,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 218,
+    "title": "哈利·波特与魔法石",
+    "originalTitle": "",
+    "year": 2001,
+    "region": "英国",
+    "genres": [
+      "奇幻",
+      "冒险"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 23,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 219,
+    "title": "寻梦环游记",
+    "originalTitle": "",
+    "year": 2017,
+    "region": "美国",
+    "genres": [
+      "动画",
+      "音乐"
+    ],
+    "director": "待补充",
+    "originalRating": 9.1,
+    "rank": 24,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 220,
+    "title": "大话西游之大圣娶亲",
+    "originalTitle": "",
+    "year": 1995,
+    "region": "中国香港",
+    "genres": [
+      "喜剧",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 25,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 221,
+    "title": "小森林 夏秋篇",
+    "originalTitle": "",
+    "year": 2014,
+    "region": "日本",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.0,
+    "rank": 26,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 222,
+    "title": "少年派的奇幻漂流",
+    "originalTitle": "",
+    "year": 2012,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "冒险"
+    ],
+    "director": "待补充",
+    "originalRating": 9.1,
+    "rank": 27,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 223,
+    "title": "怦然心动",
+    "originalTitle": "",
+    "year": 2010,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.1,
+    "rank": 28,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 224,
+    "title": "布达佩斯大饭店",
+    "originalTitle": "",
+    "year": 2014,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.9,
+    "rank": 29,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 225,
+    "title": "触不可及",
+    "originalTitle": "",
+    "year": 2011,
+    "region": "法国",
+    "genres": [
+      "剧情",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 30,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 226,
+    "title": "你的名字。",
+    "originalTitle": "",
+    "year": 2016,
+    "region": "日本",
+    "genres": [
+      "动画",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 8.5,
+    "rank": 31,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 227,
+    "title": "放牛班的春天",
+    "originalTitle": "",
+    "year": 2004,
+    "region": "法国",
+    "genres": [
+      "剧情",
+      "音乐"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": 32,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 228,
+    "title": "当幸福来敲门",
+    "originalTitle": "",
+    "year": 2006,
+    "region": "美国",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 33,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 229,
+    "title": "蝙蝠侠：黑暗骑士",
+    "originalTitle": "",
+    "year": 2008,
+    "region": "美国",
+    "genres": [
+      "动作",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 9.2,
+    "rank": 34,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 230,
+    "title": "看不见的客人",
+    "originalTitle": "",
+    "year": 2016,
+    "region": "西班牙",
+    "genres": [
+      "剧情",
+      "悬疑"
+    ],
+    "director": "待补充",
+    "originalRating": 8.8,
+    "rank": 35,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "archive",
+    "playable": true
+  },
+  {
+    "id": 231,
+    "title": "心迷宫之三重",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "悬疑",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 8.1,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 232,
+    "title": "我们仅有一次",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "director": "待补充",
+    "originalRating": 5.9,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 233,
+    "title": "生日快乐",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "家庭"
+    ],
+    "director": "待补充",
+    "originalRating": 8.9,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 234,
+    "title": "珠穆朗玛：云中",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "纪录片"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 235,
+    "title": "生化危机：爆发夜",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "德国",
+    "genres": [
+      "科幻",
+      "惊悚"
+    ],
+    "director": "待补充",
+    "originalRating": 7.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 236,
+    "title": "疾速追杀",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "动作",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 7.8,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 237,
+    "title": "野兽之心",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "动作"
+    ],
+    "director": "待补充",
+    "originalRating": 7.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 238,
+    "title": "笑傲江湖2",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国香港",
+    "genres": [
+      "动作",
+      "武侠"
+    ],
+    "director": "待补充",
+    "originalRating": 8.5,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 239,
+    "title": "神探之痕迹",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "悬疑",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 6.7,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 240,
+    "title": "三星彩：未来",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "科幻",
+      "动画"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 241,
+    "title": "戴帽子的猫",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "动画",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 242,
+    "title": "小羊肖恩3",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "英国",
+    "genres": [
+      "动画",
+      "喜剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 243,
+    "title": "空枪",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "犯罪"
+    ],
+    "director": "待补充",
+    "originalRating": 7.2,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 244,
+    "title": "敦煌英雄",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "动作",
+      "古装"
+    ],
+    "director": "待补充",
+    "originalRating": 6.0,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 245,
+    "title": "奥德赛",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "动作",
+      "冒险"
+    ],
+    "director": "待补充",
+    "originalRating": 8.6,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 246,
+    "title": "爷爷奶奶那些事",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 247,
+    "title": "海上钢琴师：重映",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": 9.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 248,
+    "title": "夫妻一场",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 249,
+    "title": "我没错！",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 250,
+    "title": "向阳青春",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 251,
+    "title": "深度安静",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 252,
+    "title": "霹雳英雄",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 253,
+    "title": "试探",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 254,
+    "title": "悲伤逆流成河",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 255,
+    "title": "魔法秘境",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "movie",
+    "releaseStatus": "upcoming",
+    "playable": false
+  },
+  {
+    "id": 256,
+    "title": "综金钗",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.0,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 257,
+    "title": "小城良方",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.0,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 258,
+    "title": "今天是太阳雨",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 259,
+    "title": "末路兼职",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "韩国",
+    "genres": [
+      "剧情",
+      "韩剧"
+    ],
+    "director": "待补充",
+    "originalRating": 6.6,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 260,
+    "title": "蒸蒸日上",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.8,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 261,
+    "title": "尚公主",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 262,
+    "title": "谷雨",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 263,
+    "title": "我的有罪之人",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "韩国",
+    "genres": [
+      "剧情",
+      "韩剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.6,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 264,
+    "title": "折月亮",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 265,
+    "title": "兰香如故",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.5,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 266,
+    "title": "伟大的长征",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.6,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 267,
+    "title": "余红旧事",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.8,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 268,
+    "title": "千鹤秋",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 6.7,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 269,
+    "title": "醉梦",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.5,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 270,
+    "title": "璀璨之城",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "中国大陆",
+    "genres": [
+      "剧情",
+      "国产剧"
+    ],
+    "director": "待补充",
+    "originalRating": null,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 271,
+    "title": "翠鸟谋杀案",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "欧美剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 272,
+    "title": "流人 第六季",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "美国",
+    "genres": [
+      "剧情",
+      "欧美剧"
+    ],
+    "director": "待补充",
+    "originalRating": 7.2,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  },
+  {
+    "id": 273,
+    "title": "Doctor X：白色黑手党的时代",
+    "originalTitle": "",
+    "year": 2026,
+    "region": "日本",
+    "genres": [
+      "剧情",
+      "日剧"
+    ],
+    "director": "待补充",
+    "originalRating": 8.3,
+    "rank": null,
+    "newChartRank": null,
+    "posterUrl": "/assets/posters/placeholder.svg",
+    "synopsis": "本地课程演示数据：电影简介将在后续与原站截图核对后完善。",
+    "mediaType": "tv",
+    "releaseStatus": "showing",
+    "playable": true
+  }
+]
