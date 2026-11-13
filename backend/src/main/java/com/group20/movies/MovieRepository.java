@@ -65,6 +65,26 @@ class MovieRepository {
         if (query.chart().equals("new")) {
             conditions.add("new_chart_rank IS NOT NULL");
         }
+        if (!query.mediaType().isEmpty()) {
+            conditions.add("media_type = ?");
+            params.add(query.mediaType());
+        }
+        if (query.mediaType().equals("movie")) {
+            conditions.add("release_status <> 'upcoming'");
+        }
+        if (query.regionGroup().equals("chinese")) {
+            conditions.add("region LIKE '中国%'");
+        }
+        if (query.regionGroup().equals("western")) {
+            conditions.add("region IN ('美国', '英国', '法国', '德国', '意大利', '西班牙')");
+        }
+        if (query.playable()) {
+            conditions.add("playable = TRUE");
+        }
+        if (query.unwatchedBy() != null) {
+            conditions.add("NOT EXISTS (SELECT 1 FROM user_movie WHERE movie_id = movie.id AND user_id = ? AND status = 'WATCHED')");
+            params.add(query.unwatchedBy());
+        }
 
         String from = " FROM movie";
         if (!conditions.isEmpty()) {
@@ -80,6 +100,7 @@ class MovieRepository {
             case "rank" -> "top_rank, id";
             case "rating_desc" -> "original_rating DESC NULLS LAST, id";
             case "year_desc" -> "release_year DESC, id";
+            case "year_asc" -> "release_year, original_rating DESC NULLS LAST, id";
             default -> "id";
         };
         params.add(query.size());

@@ -8,12 +8,12 @@
   const artStyle = (movie) => `background:linear-gradient(155deg,${palette[Number(movie.id) % palette.length]})`;
   const poster = (movie, className = '') => `<a class="poster-art ${className}" style="${artStyle(movie)}" href="${movieUrl(movie)}" aria-label="查看${escapeHtml(movie.title)}的电影详情"><span>${escapeHtml(movie.title)}</span></a>`;
   const rating = (movie) => movie.originalRating == null ? '<span class="muted">暂无评分</span>' : `<span class="rating">★★★★★ <strong>${escapeHtml(movie.originalRating.toFixed(1))}</strong></span>`;
-  const note = '<div class="demo-note">当前显示本地演示电影资料；登录、标记和短评可在此浏览器演示，Java 后端由 B 后续接入。</div>';
+  const note = '<div class="demo-note">当前显示静态电影样例。启动 Java 服务后可登录、标记和发表短评。</div>';
 
   function header() {
     if (page === 'login') return;
     const active = (name) => page === name ? ' class="active" aria-current="page"' : '';
-    $('#site-header').innerHTML = `<div class="global-bar"><div class="global-inner"><div class="global-links"><a href="index.html">豆瓣</a><a href="index.html">读书</a><a href="index.html">电影</a><a href="index.html">音乐</a><a href="index.html">播客</a><a href="index.html">同城</a><a href="index.html">小组</a><a href="index.html">阅读</a><a href="index.html">FM</a><a href="index.html">时间</a><a href="index.html">豆品</a></div><div class="account-area"><a href="login.html">下载豆瓣客户端</a><span id="session-area"><a href="login.html">登录/注册</a></span></div></div></div><div class="site-top"><div class="site-top-inner"><a href="index.html" class="brand">豆瓣电影</a><form id="site-search" class="site-search" action="search.html" method="get"><input name="keyword" type="search" placeholder="搜索电影、电视剧、综艺、影人" aria-label="搜索电影" required><button type="submit" aria-label="搜索">⌕</button></form><div class="year-banner"><strong>2025</strong> 豆瓣<br>年度电影榜单</div></div></div><nav class="site-nav" aria-label="电影导航"><div class="site-nav-inner"><a href="index.html">我看</a><a href="showing.html"${active('showing')}>影讯&购票</a><a href="explore.html"${active('explore')}>选电影</a><a href="tv.html"${active('tv')}>选剧集</a><a href="chart.html"${active('chart')}>排行榜</a><a href="comments.html?movieId=6">影评</a><a href="chart.html">2025年度榜单</a><a href="chart.html">2025年度报告</a></div></nav>`;
+    $('#site-header').innerHTML = `<div class="global-bar"><div class="global-inner"><div class="global-links"><a href="index.html">豆瓣</a><a href="index.html">读书</a><a href="index.html">电影</a><a href="index.html">音乐</a><a href="index.html">播客</a><a href="index.html">同城</a><a href="index.html">小组</a><a href="index.html">阅读</a><a href="index.html">FM</a><a href="index.html">时间</a><a href="index.html">豆品</a></div><div class="account-area"><a href="login.html">下载豆瓣客户端</a><span id="session-area"><a href="login.html">登录/注册</a></span></div></div></div><div class="site-top"><div class="site-top-inner"><a href="index.html" class="brand">豆瓣电影</a><form id="site-search" class="site-search" action="search.html" method="get"><input name="keyword" type="search" placeholder="搜索电影、电视剧、综艺、影人" aria-label="搜索电影" required><button type="submit" aria-label="搜索">⌕</button></form><div class="year-banner"><strong>2025</strong> 豆瓣<br>年度电影榜单</div></div></div><nav class="site-nav" aria-label="电影导航"><div class="site-nav-inner"><a href="index.html">我看</a><a href="showing.html"${active('showing')}>影讯&购票</a><a href="explore.html"${active('explore')}>选电影</a><a href="tv.html"${active('tv')}>选剧集</a><a href="chart.html"${active('chart')}>排行榜</a><a href="comments.html?movieId=6"${active('comments')}>影评</a><a href="chart.html">2025年度榜单</a><a href="chart.html">2025年度报告</a></div></nav>`;
     $('#site-footer').innerHTML = '<span>© 2026 Group20 · 豆瓣电影课程项目本地演示</span><span>原站参考：movie.douban.com</span>';
     loadSession();
   }
@@ -31,19 +31,32 @@
   async function loadSession() {
     const area = $('#session-area');
     if (!area) return;
-    let current = null, local = false;
-    try { current = (await requestJson('/api/session'))?.user || null; }
-    catch (error) {
-      if (error.status !== 401) {
-        try { current = JSON.parse(localStorage.getItem('group20-demo-session-v1')); local = !!current; } catch (_) {}
-      }
-    }
+    const current = await currentUser().catch(() => null);
     if (!current) return;
     area.innerHTML = `<span>${escapeHtml(current.displayName)}</span> <button id="logout-button" type="button">退出</button>`;
     $('#logout-button').addEventListener('click', async () => {
-      if (local) { localStorage.removeItem('group20-demo-session-v1'); location.reload(); return; }
-      try { await fetch('/api/session', {method:'DELETE', credentials:'same-origin'}); location.reload(); }
+      try { await requestJson('/api/session', {method:'DELETE'}); location.reload(); }
       catch (_) { alert('退出失败，请重试。'); }
+    });
+  }
+  async function currentUser() {
+    try { return (await requestJson('/api/session')).user; }
+    catch (error) { if (error.status === 401) return null; throw error; }
+  }
+  function loginHere() {
+    location.href = `login.html?next=${encodeURIComponent(location.pathname.split('/').pop() + location.search)}`;
+  }
+  async function markMovie(id, value) {
+    const path = `/api/movies/${encodeURIComponent(id)}/status`;
+    const {status} = await requestJson(path);
+    return requestJson(path, {method:'PUT', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({status:status === value ? null : value})});
+  }
+  function updateMarkButtons(container, status) {
+    container.querySelectorAll('[data-status]').forEach((button) => {
+      const active = button.dataset.status === status;
+      button.setAttribute('aria-pressed', active);
+      button.textContent = (active ? '已' : '') + (button.dataset.status === 'WANT' ? '想看' : '看过');
     });
   }
   let localMovies = null;
@@ -55,14 +68,14 @@
     const search = new URLSearchParams(params);
     try {
       const data = await requestJson(`/api/movies?${search}`);
-      return {movies: Array.isArray(data) ? data : (data.items || []), demo:false};
+      return {movies: data.items, total:data.total, demo:false};
     } catch (error) {
       if (error.status && error.status !== 404) throw error;
       const movies = await getLocalMovies();
       let items = [...movies];
       if (params.chart === 'new') items = items.filter((movie) => movie.newChartRank != null).sort((a,b) => a.newChartRank - b.newChartRank);
       if (params.sort === 'rank') items = items.filter((movie) => movie.rank != null).sort((a,b) => a.rank - b.rank);
-      return {movies:items,demo:true};
+      return {movies:items,total:items.length,demo:true};
     }
   }
   async function getMovie(id) {
@@ -121,43 +134,40 @@
       const {movie,demo} = await getMovie(id);
       document.title = `${movie.title} · 豆瓣电影 Group20 本地演示`;
       const facts = [['导演',movie.director],['类型',movie.genres.join(' / ')],['制片国家/地区',movie.region],['上映年份',movie.year],['原名',movie.originalTitle || '—']];
-      $('#movie-content').innerHTML = `${demo ? note : ''}<h1 class="movie-title">${escapeHtml(movie.title)} <span>(${escapeHtml(movie.year)})</span></h1><div class="movie-summary">${poster(movie)}<div class="movie-facts">${facts.map(([key,value]) => `<div><b>${key}: </b>${escapeHtml(value)}</div>`).join('')}</div><div class="movie-score">豆瓣评分<div class="score-number">${movie.originalRating == null ? '—' : escapeHtml(movie.originalRating.toFixed(1))}</div><div class="score-stars">★★★★★</div><small>原站评分快照，仅供页面展示</small></div></div><div class="movie-actions"><button id="want-button" type="button">想看</button><button id="watched-button" type="button">看过</button><span class="action-status" id="movie-status" role="status">尚未标记</span></div><section class="movie-section"><h2>${escapeHtml(movie.title)}的剧情简介 · · · · · ·</h2><p>${escapeHtml(movie.synopsis)}</p></section><section class="movie-section"><h2>演职员 · · · · · ·</h2><div class="cast-list"><div class="cast-person">${escapeHtml(movie.director)}</div><div class="cast-person">演员资料</div><div class="cast-person">演员资料</div></div></section><section class="movie-section"><h2>${escapeHtml(movie.title)}的预告片和图片 · · · · · ·</h2><div class="media-tiles"><a class="media-tile" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▶</span><small>预告片展示位</small></a><a class="media-tile alt" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▣</span><small>剧照展示位</small></a><a class="media-tile blue" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▣</span><small>海报展示位</small></a></div></section><section class="movie-section"><h2>喜欢这部电影的人也喜欢 · · · · · ·</h2><div id="movie-recommendations" class="poster-grid"></div></section><section class="movie-section"><h2>${escapeHtml(movie.title)}的短评 · · · · · · <a href="comments.html?movieId=${encodeURIComponent(movie.id)}">全部短评 ›</a></h2><div id="review-preview" class="review-line"><a href="comments.html?movieId=${encodeURIComponent(movie.id)}">查看全部短评，或登录发表自己的短评 ›</a></div></section>`;
+      $('#movie-content').innerHTML = `${demo ? note : ''}<h1 class="movie-title">${escapeHtml(movie.title)} <span>(${escapeHtml(movie.year)})</span></h1><div class="movie-summary">${poster(movie)}<div class="movie-facts">${facts.map(([key,value]) => `<div><b>${key}: </b>${escapeHtml(value)}</div>`).join('')}</div><div class="movie-score">豆瓣评分<div class="score-number">${movie.originalRating == null ? '—' : escapeHtml(movie.originalRating.toFixed(1))}</div><div class="score-stars">★★★★★</div><small>原站评分快照，仅供页面展示</small></div></div><div class="movie-actions"><button data-status="WANT" aria-pressed="false" type="button">想看</button><button data-status="WATCHED" aria-pressed="false" type="button">看过</button><span class="action-status" id="movie-status" role="status">尚未标记</span></div><section class="movie-section"><h2>${escapeHtml(movie.title)}的剧情简介 · · · · · ·</h2><p>${escapeHtml(movie.synopsis)}</p></section><section class="movie-section"><h2>演职员 · · · · · ·</h2><div class="cast-list"><div class="cast-person">${escapeHtml(movie.director)}</div><div class="cast-person">演员资料</div><div class="cast-person">演员资料</div></div></section><section class="movie-section"><h2>${escapeHtml(movie.title)}的预告片和图片 · · · · · ·</h2><div class="media-tiles"><a class="media-tile" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▶</span><small>预告片展示位</small></a><a class="media-tile alt" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▣</span><small>剧照展示位</small></a><a class="media-tile blue" href="comments.html?movieId=${encodeURIComponent(movie.id)}"><span>▣</span><small>海报展示位</small></a></div></section><section class="movie-section"><h2>喜欢这部电影的人也喜欢 · · · · · ·</h2><div id="movie-recommendations" class="poster-grid"></div></section><section class="movie-section"><h2>${escapeHtml(movie.title)}的短评 · · · · · · <a href="comments.html?movieId=${encodeURIComponent(movie.id)}">全部短评 ›</a></h2><div id="review-preview" class="review-line"><a href="comments.html?movieId=${encodeURIComponent(movie.id)}">查看全部短评，或登录发表自己的短评 ›</a></div></section>`;
       const related = (await getLocalMovies()).filter((item) => item.id !== movie.id && item.mediaType === movie.mediaType);
       $('#related-movies').innerHTML = related.slice(0,8).map((item) => card(item)).join('');
       $('#movie-recommendations').innerHTML = related.slice(0,5).map((item) => card(item)).join('');
+      const actions = $('.movie-actions');
       const statusLabel = $('#movie-status');
+      const displayStatus = (status) => {
+        updateMarkButtons(actions, status);
+        statusLabel.textContent = status === 'WANT' ? '已标记：想看' : status === 'WATCHED' ? '已标记：看过' : '尚未标记';
+        statusLabel.className = 'action-status';
+      };
       try {
         const data = await requestJson(`/api/movies/${encodeURIComponent(movie.id)}/status`);
-        statusLabel.textContent = data.status === 'WANT' ? '已标记：想看' : data.status === 'WATCHED' ? '已标记：看过' : '尚未标记';
+        displayStatus(data.status);
       } catch (error) {
-        if (!error.status || error.status === 404) {
-          const current = await window.Group20Auth?.user();
-          const local = current ? window.Group20Auth.localStatus(movie.id,current.id) : null;
-          statusLabel.textContent = local === 'WANT' ? '已标记：想看' : local === 'WATCHED' ? '已标记：看过' : '尚未标记';
-        } else if (error.status === 401) statusLabel.textContent = '请登录后标记';
+        statusLabel.textContent = error.status === 401 ? '请登录后标记' : '观影状态暂不可用';
       }
-      for (const [buttonId,value] of [['want-button','WANT'],['watched-button','WATCHED']]) {
-        $(`#${buttonId}`).addEventListener('click', async () => {
-          const current = await window.Group20Auth?.user();
-          if (!current) { location.href = `login.html?next=${encodeURIComponent(`movie.html?id=${movie.id}`)}`; return; }
-          const active = statusLabel.textContent === (value === 'WANT' ? '已标记：想看' : '已标记：看过');
-          const nextStatus = active ? null : value;
-          try {
-            const data = await requestJson(`/api/movies/${encodeURIComponent(movie.id)}/status`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:nextStatus})});
-            statusLabel.textContent = data.status === 'WANT' ? '已标记：想看' : data.status === 'WATCHED' ? '已标记：看过' : '尚未标记';
-            statusLabel.className = 'action-status status-good';
-          } catch (error) {
-            if (!error.status || error.status === 404) {
-              window.Group20Auth.setLocalStatus(movie.id,current.id,nextStatus);
-              statusLabel.textContent = nextStatus === 'WANT' ? '已标记：想看' : nextStatus === 'WATCHED' ? '已标记：看过' : '尚未标记';
-              statusLabel.className = 'action-status status-good';
-            } else {
-              statusLabel.textContent = error.status === 401 ? '请先登录' : error.message;
-              statusLabel.className = 'action-status status-error';
-            }
+      const buttons = actions.querySelectorAll('[data-status]');
+      actions.addEventListener('click', async (event) => {
+        const button = event.target.closest('[data-status]');
+        if (!button) return;
+        buttons.forEach((item) => { item.disabled = true; });
+        try {
+          displayStatus((await markMovie(movie.id, button.dataset.status)).status);
+        } catch (error) {
+          if (error.status === 401) loginHere();
+          else {
+            statusLabel.textContent = error.message;
+            statusLabel.className = 'action-status status-error';
           }
-        });
-      }
+        } finally {
+          buttons.forEach((item) => { item.disabled = false; });
+        }
+      });
       try {
         const result = await requestJson(`/api/movies/${encodeURIComponent(movie.id)}/reviews?page=1&size=3`);
         const reviews = result.items || [];
@@ -178,7 +188,7 @@
       $('#username').placeholder = mode === 'sms' ? '手机号（暂不支持短信发送）' : '演示账号用户名';
       $('#password').placeholder = mode === 'sms' ? '验证码' : '密码';
       $('#password').type = mode === 'sms' ? 'text' : 'password';
-      $('#login-hint').textContent = mode === 'sms' ? '课程演示不接入真实短信服务；请切换到密码登录。' : '本地演示账号 demo1 / demo123；正式账号由 Java 后端提供。';
+      $('#login-hint').textContent = mode === 'sms' ? '课程演示请使用密码登录。' : '演示账号 demo1、demo2 或 demo3，密码均为 demo123。';
       $('#login-feedback').textContent = '';
     }));
     $('#login-form').addEventListener('submit', async (event) => {
@@ -192,9 +202,7 @@
       submit.disabled = true;
       feedback.textContent = '正在登录…';
       try {
-        let data;
-        try { data = await requestJson('/api/session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})}); }
-        catch (error) { if (error.status && error.status !== 404) throw error; data = {user:await window.Group20Auth.login(username,password)}; }
+        const data = await requestJson('/api/session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
         if (!data?.user) throw new Error('登录返回数据不完整。');
         const next = new URLSearchParams(location.search).get('next');
         location.href = next && /^(index|showing|tv|chart|movie|top250|explore|search|comments)\.html(?:\?|$)/.test(next) ? next : 'index.html';
@@ -214,6 +222,7 @@
       if (target) target.insertAdjacentHTML('afterbegin', `<div class="error-box">页面数据加载失败：${escapeHtml(error.message)}。请通过本地服务打开页面。</div>`);
     }
   }
-  window.Group20 = {getMovies,getMovie,getLocalMovies,requestJson,escapeHtml,movieUrl,poster,card,rankList,note};
+  window.Group20 = {getMovies,getMovie,getLocalMovies,requestJson,escapeHtml,movieUrl,poster,card,rankList,note,
+    currentUser,loginHere,markMovie,updateMarkButtons};
   main();
 })();

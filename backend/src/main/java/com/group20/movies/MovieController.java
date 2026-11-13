@@ -3,6 +3,7 @@ package com.group20.movies;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/movies")
 class MovieController {
-    private static final Set<String> SORTS = Set.of("", "rank", "rating_desc", "year_desc");
+    private static final Set<String> SORTS = Set.of("", "rank", "rating_desc", "year_desc", "year_asc");
     private final MovieRepository repository;
 
     MovieController(MovieRepository repository) {
@@ -31,7 +32,11 @@ class MovieController {
                    @RequestParam(required = false) BigDecimal maxRating,
                    @RequestParam(defaultValue = "") String sort,
                    @RequestParam(defaultValue = "") String chart,
-                   @RequestParam(defaultValue = "false") boolean unwatched) {
+                   @RequestParam(defaultValue = "") String mediaType,
+                   @RequestParam(defaultValue = "") String regionGroup,
+                   @RequestParam(defaultValue = "false") boolean playable,
+                   @RequestParam(defaultValue = "false") boolean unwatched,
+                   HttpServletRequest request) {
         if (page < 1 || size < 1 || size > 250) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "page 从 1 开始，size 必须在 1 到 250 之间。");
         }
@@ -42,11 +47,12 @@ class MovieController {
                 || (minRating != null && maxRating != null && minRating.compareTo(maxRating) > 0)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "评分范围须在 0 到 10 之间，且最低分不得高于最高分。");
         }
-        if (unwatched) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "请登录后筛选未看过的电影。");
+        if (!Set.of("", "movie", "tv").contains(mediaType) || !Set.of("", "chinese", "western").contains(regionGroup)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "不支持的 mediaType 或 regionGroup。");
         }
+        Integer userId = unwatched ? SessionController.requireUser(request).id() : null;
         return repository.findPage(new MovieQuery(page, size, keyword.strip(), region.strip(), genre.strip(),
-                minRating, maxRating, sort, chart));
+                minRating, maxRating, sort, chart, mediaType, regionGroup, playable, userId));
     }
 
     @GetMapping("/{id}")
