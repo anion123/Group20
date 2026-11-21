@@ -4,9 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(properties = "spring.datasource.url=jdbc:h2:mem:movies-test")
@@ -109,5 +114,41 @@ class MovieApiTest {
         http.perform(get("/")).andExpect(status().isOk());
         http.perform(get("/search.html")).andExpect(status().isOk());
         http.perform(get("/assets/data/demo-movies.json")).andExpect(status().isOk());
+    }
+
+    @Test
+    void rejectsAnonymousAndNonOwnerReviewWrites() throws Exception {
+        String input = """
+                {"stars":4,"content":"测试四星短评。"}
+                """;
+        http.perform(put("/api/movies/6/review").contentType(MediaType.APPLICATION_JSON).content(input))
+                .andExpect(status().isUnauthorized());
+        MockHttpSession author = login("demo1");
+        MockHttpSession other = login("demo2");
+        http.perform(put("/api/movies/6/review").session(author).contentType(MediaType.APPLICATION_JSON).content(input))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.stars").value(4))
+                .andExpect(jsonPath("$.userId").value(1));
+        var json = new tools.jackson.databind.json.JsonMapper();
+        var review = http.perform(get("/api/movies/6/review").session(author))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsByteArray();
+        String route = "/api/movies/6/reviews/" + json.readTree(review).path("id").asLong();
+        http.perform(put(route).session(other).contentType(MediaType.APPLICATION_JSON).content(input))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.error").value("FORBIDDEN"));
+        http.perform(delete(route).session(other)).andExpect(status().isForbidden());
+        http.perform(delete(route).session(author)).andExpect(status().isNoContent());
+        http.perform(get("/api/movies/6/reviews")).andExpect(jsonPath("$.total").value(0));
+    }
+
+    private MockHttpSession login(String username) throws Exception {
+        var request = http.perform(post("/api/session").contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"username":"%s","password":"demo123"}
+                                """.formatted(username)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.user.passwordHash").doesNotExist())
+                .andReturn().getRequest();
+        return (MockHttpSession) request.getSession(false);
     }
 }
