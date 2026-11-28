@@ -174,7 +174,16 @@
         if (reviews.length) $('#review-preview').innerHTML = reviews.map((review) => `<div class="review-line"><a href="comments.html?movieId=${encodeURIComponent(movie.id)}">${escapeHtml(review.author)}</a> <span class="rating">${'★'.repeat(Math.max(1,Math.min(5,review.stars)))}</span><p>${escapeHtml(review.content)}</p></div>`).join('');
       } catch (_) {}
     } catch (error) {
-      $('#movie-content').innerHTML = `<div class="error-box"><h1>没有找到这部电影</h1><p>${escapeHtml(error.message)}</p><a href="index.html">返回首页</a></div>`;
+      const target = $('#movie-content');
+      const missing = error.status === 404 || error.status === 400;
+      target.innerHTML = `<div class="error-box" role="alert"><h1>${missing ? '没有找到这部电影' : '电影详情暂时无法加载'}</h1><p>${escapeHtml(error.message)}</p><a href="index.html">返回首页</a></div>`;
+      if (!missing) {
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.textContent = '重试';
+        retry.addEventListener('click', () => { retry.disabled = true; renderMovie(); });
+        target.firstElementChild.append(retry);
+      }
     }
   }
   function renderLogin() {

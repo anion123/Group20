@@ -12,10 +12,12 @@
   const empty=(message)=>`<div class="empty-state">${escapeHtml(message)}</div>`;
   function pages(container,current,total,update) {
     if (!container) return;
-    const count=Math.max(1,Math.ceil(total/25));
+    const count=Math.ceil(total/25);
     container.innerHTML='';
+    if (count <= 1) return;
     const button=(label,value,disabled=false,active=false)=>{
       const b=document.createElement('button');b.type='button';b.textContent=label;b.disabled=disabled;b.className=active?'active':'';
+      if (active) b.setAttribute('aria-current','page');
       b.addEventListener('click',()=>update(value));container.appendChild(b);
     };
     button('‹前页',current-1,current<=1);
@@ -61,21 +63,29 @@
       }
     });
     return async () => {
-      if (!(await G.currentUser())) return;
-      await Promise.all([...container.querySelectorAll(markGroup)].map(async (group) => {
-        const id = group.querySelector('button').dataset.id;
-        const {status} = await requestJson('/api/movies/' + encodeURIComponent(id) + '/status');
-        G.updateMarkButtons(group, status);
-      }));
+      const groups = [...container.querySelectorAll(markGroup)];
+      const buttons = groups.flatMap((group) => [...group.querySelectorAll('button')]);
+      buttons.forEach((button) => { button.disabled = true; });
+      try {
+        if (!(await G.currentUser())) return;
+        await Promise.allSettled(groups.map(async (group) => {
+          const id = group.querySelector('button').dataset.id;
+          const {status} = await requestJson('/api/movies/' + encodeURIComponent(id) + '/status');
+          G.updateMarkButtons(group, status);
+        }));
+      } finally {
+        buttons.forEach((button) => { button.disabled = false; });
+      }
     };
   }
 
   const positivePage = (value) => /^[1-9]\d*$/.test(value || '') && Number(value) <= 2147483647 ? Number(value) : 1;
+  const errorMessage = (error) => error.status ? error.message : '连接失败，请确认服务已启动后重试。';
   const listingError = (target, error, retry) => {
     target.innerHTML = '<div class="error-box" role="alert"><p>' +
-      escapeHtml(error.status ? error.message : '连接失败，请确认服务已启动后重试。') +
+      escapeHtml(errorMessage(error)) +
       '</p></div>';
-    if (retry) {
+    if (retry && (!error.status || error.status >= 500)) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = '重试';
@@ -99,7 +109,8 @@
     const playable = $('#' + (isTv ? 'tv-playable' : 'playable-filter'));
     const maxRating = $('#' + (isTv ? 'tv-max-rating' : 'max-rating'));
     const genreFilter = isTv ? null : $('#genre-filter');
-    let sort = query.get('sort') || 'all';
+    const sorts = [...tabs.querySelectorAll('button')];
+    let sort = sorts.find((button) => button.dataset.sort === query.get('sort'))?.dataset.sort || 'all';
     ratingFilter.value = query.get('minRating') || '';
     maxRating.value = query.get('maxRating') || '';
     unwatched.checked = query.get('unwatched') === 'true';
@@ -110,7 +121,7 @@
       }
       genreFilter.value = genre;
     }
-    tabs.querySelectorAll('button').forEach((button) => button.classList.toggle('active', button.dataset.sort === sort));
+    sorts.forEach((button) => button.classList.toggle('active', button.dataset.sort === sort));
     const feedback = document.createElement('div');
     feedback.className = 'list-feedback';
     feedback.setAttribute('role', 'status');
@@ -174,7 +185,6 @@
       if (isTv) genre = button.dataset.genre;
       else region = button.dataset.region;
       filters.querySelectorAll('button').forEach((item) => item.classList.toggle('active', item === button));
-      savePage({genre,region});
       draw();
     });
     ratingFilter.addEventListener('change', () => draw());
@@ -249,7 +259,7 @@
     $('#related-searches').innerHTML = '<div class="related-item"><a href="explore.html">› 浏览更多电影</a></div>';
     movieResults({
       container:$('#search-results'), pagination:$('#search-pagination'), params:{keyword:query},
-      noResults:'当前页没有相关条目，请尝试其他关键词或页码。',
+      noResults:'没有找到相关电影或剧集，请尝试其他关键词。',
       render:(m) => `<article class="search-item">${poster(m)}<div><h2><a href="${movieUrl(m)}">${escapeHtml(m.title)} (${m.year})</a></h2>${rating(m)}<p>${escapeHtml(m.region)} / ${escapeHtml(m.genres.join(" / "))} / ${escapeHtml(m.originalTitle)}</p><p>${escapeHtml(m.director)}</p><div class="search-actions">${markButtons(m.id)}</div></div></article>`
     });
   }
@@ -258,17 +268,24 @@
     const movieId = new URLSearchParams(location.search).get('movieId') || '6';
     const path = '/api/movies/' + encodeURIComponent(movieId);
     const list = $('#comments-list');
+    const write = $('#write-review');
+    const reviewFeedback = $('#review-feedback');
+    write.disabled = true;
+    list.innerHTML = empty('正在加载…');
     let movie, account;
     try {
       [movie,account] = await Promise.all([requestJson(path),G.currentUser()]);
     } catch (error) {
-      listingError(list,error);
-      $('#write-review').disabled = true;
+      listingError(list,error,comments);
+      $('#comments-back').href = 'index.html';
+      $('#comments-back').textContent = '› 返回首页';
       return;
     }
     document.title = movie.title + ' 短评 · 豆瓣电影';
     $('#comments-title').textContent = movie.title + ' 短评';
     $('#comments-back').href = movieUrl(movie);
+    $('#comments-back').textContent = '› 去电影首页';
+    write.disabled = false;
     $('#comments-movie-card').innerHTML = '<div class="comment-side-movie">' + poster(movie) + '<div><a href="' +
       movieUrl(movie) + '">' + escapeHtml(movie.title) + '</a><p>导演: ' + escapeHtml(movie.director) +
       '<br>类型: ' + escapeHtml(movie.genres.join(' / ')) + '<br>地区: ' + escapeHtml(movie.region) + '</p></div></div>';
@@ -296,40 +313,61 @@
 
     function openEditor(review) {
       const target = $('#review-form-container');
+      reviewFeedback.textContent = '';
       target.innerHTML = `<form class="review-editor" id="review-editor"><strong>${review ? "修改我的短评" : "写一条短评"}</strong><label>评分 <select name="stars">${[5,4,3,2,1].map((n) => `<option value="${n}" ${review?.stars === n ? "selected" : ""}>${n} 星</option>`).join("")}</select></label><label>短评内容<textarea name="content" maxlength="500" required placeholder="说说你的观影感受">${escapeHtml(review?.content || "")}</textarea></label><div class="feedback" role="status"></div><button type="submit">${review ? "保存修改" : "发表短评"}</button><button type="button" class="cancel">取消</button></form>`;
       const form = $('#review-editor');
-      form.querySelector('.cancel').addEventListener('click', () => { target.innerHTML = ''; });
+      form.dataset.reviewId = review?.id ?? '';
+      const cancel = form.querySelector('.cancel');
+      cancel.addEventListener('click', () => { target.innerHTML = ''; });
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const submit = form.querySelector('[type=submit]');
         const feedback = form.querySelector('.feedback');
+        const content = form.elements.content.value.trim();
+        if (!content) {
+          feedback.textContent = '请输入短评内容。';
+          return;
+        }
+        feedback.textContent = '';
         submit.disabled = true;
+        cancel.disabled = true;
         try {
+          const signedIn = await G.currentUser();
+          if (!signedIn || signedIn.id !== account.id) {
+            feedback.textContent = '请在另一个标签页登录原账号，再返回保存。草稿已保留在当前页面。';
+            return;
+          }
           await requestJson(path + (review ? '/reviews/' + review.id : '/review'), {
             method:'PUT', headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({stars:Number(form.elements.stars.value),content:form.elements.content.value.trim()})
+            body:JSON.stringify({stars:Number(form.elements.stars.value),content})
           });
           target.innerHTML = '';
+          reviewFeedback.textContent = review ? '短评已修改。' : '短评已发表。';
           current = 1;
           draw();
         } catch (error) {
-          if (error.status === 401) G.loginHere();
-          else feedback.textContent = error.message;
+          feedback.textContent = error.status === 401 ? '登录已过期。可在另一个标签页重新登录，然后返回保存。' : errorMessage(error);
         } finally {
           submit.disabled = false;
+          cancel.disabled = false;
         }
       });
       form.elements.content.focus();
     }
 
-    $('#write-review').addEventListener('click', async () => {
+    write.addEventListener('click', async () => {
       if (!account) { G.loginHere(); return; }
+      const draft = $('#review-editor');
+      if (draft) { draft.elements.content.focus(); return; }
+      write.disabled = true;
       try {
         openEditor(await requestJson(path + '/review'));
       } catch (error) {
         if (error.status === 404) openEditor(null);
         else if (error.status === 401) G.loginHere();
-        else listingError($('#review-form-container'),error);
+        else listingError(reviewFeedback,error,() => write.click());
+      } finally {
+        write.disabled = false;
       }
     });
     $('#comment-sort').addEventListener('click', (event) => {
@@ -344,23 +382,30 @@
     $('#comment-stars').addEventListener('change', (event) => { stars = Number(event.target.value); current = 1; draw(); });
     list.addEventListener('click', async (event) => {
       const button = event.target.closest('[data-edit], [data-delete]');
-      if (!button) return;
+      if (!button || write.disabled) return;
+      const draft = $('#review-editor');
+      if (draft?.querySelector('[type=submit]').disabled) return;
       if (button.dataset.edit) {
+        if (draft) { draft.elements.content.focus(); return; }
         const review = items.find((item) => String(item.id) === button.dataset.edit);
         if (review) openEditor(review);
         return;
       }
       if (!confirm('删除自己的这条短评？')) return;
-      button.disabled = true;
+      const controls = button.closest('.comment-actions').querySelectorAll('button');
+      controls.forEach((item) => { item.disabled = true; });
+      const submit = draft?.querySelector('[type=submit]');
+      if (submit) submit.disabled = true;
       try {
         await requestJson(path + '/reviews/' + encodeURIComponent(button.dataset.delete), {method:'DELETE'});
-        $('#review-form-container').innerHTML = '';
+        if (draft?.dataset.reviewId === button.dataset.delete) draft.remove();
+        reviewFeedback.textContent = '短评已删除。';
         draw();
       } catch (error) {
-        if (error.status === 401) G.loginHere();
-        else listingError($('#review-form-container'),error);
+        listingError(reviewFeedback,error);
       } finally {
-        button.disabled = false;
+        controls.forEach((item) => { item.disabled = false; });
+        if (submit) submit.disabled = false;
       }
     });
     draw();

@@ -26,4 +26,6 @@
 .comment-radio { border-bottom:1px solid #eee; padding-bottom:14px; }
 .comment-side-movie { line-height:1.9; }
 .error-box button { border:1px solid #bbb; padding:5px 14px; background:#fff; color:#3377aa; cursor:pointer; }
+#review-feedback:empty { display:none; }
+#review-feedback { margin:12px 0; }
 #site-footer { max-width:1040px; margin:48px auto 24px; border-top:1px dashed #ddd; padding-top:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; color:#999; }
