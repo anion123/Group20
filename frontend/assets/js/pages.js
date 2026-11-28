@@ -1,4 +1,4 @@
-/* Group20 扩展页面与离线演示交互。真实 Java API 可用时优先使用 API。 */
+/* Group20 列表、组合筛选与短评交互。 */
 (() => {
   const G = window.Group20;
   if (!G) return;
@@ -40,7 +40,7 @@
     (status === 'WANT' ? '想看' : '看过') + '</button>').join('');
 
   function bindMarks(container, onChange = () => {}) {
-    const statuses = new Map();
+
     const markGroup = '.top-actions, .search-actions';
     container.addEventListener('click', async (event) => {
       const button = event.target.closest('[data-status]');
@@ -50,7 +50,7 @@
       group.querySelectorAll('button').forEach((item) => { item.disabled = true; });
       try {
         const {status} = await G.markMovie(id, button.dataset.status);
-        statuses.set(id, status);
+
         G.updateMarkButtons(group, status);
         onChange();
       } catch (error) {
@@ -64,17 +64,25 @@
       if (!(await G.currentUser())) return;
       await Promise.all([...container.querySelectorAll(markGroup)].map(async (group) => {
         const id = group.querySelector('button').dataset.id;
-        if (!statuses.has(id)) {
-          const {status} = await requestJson('/api/movies/' + encodeURIComponent(id) + '/status');
-          statuses.set(id, status);
-        }
-        G.updateMarkButtons(group, statuses.get(id));
+        const {status} = await requestJson('/api/movies/' + encodeURIComponent(id) + '/status');
+        G.updateMarkButtons(group, status);
       }));
     };
   }
 
   const positivePage = (value) => /^[1-9]\d*$/.test(value || '') && Number(value) <= 2147483647 ? Number(value) : 1;
-  const listingError = (target, error) => { target.innerHTML = empty(error.message); };
+  const listingError = (target, error, retry) => {
+    target.innerHTML = '<div class="error-box" role="alert"><p>' +
+      escapeHtml(error.status ? error.message : '连接失败，请确认服务已启动后重试。') +
+      '</p></div>';
+    if (retry) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = '重试';
+      button.addEventListener('click', retry);
+      target.firstElementChild.appendChild(button);
+    }
+  };
 
   function explore(kind) {
     const isTv = kind === 'tv';
@@ -89,7 +97,28 @@
     const ratingFilter = $('#' + (isTv ? 'tv-rating-filter' : 'rating-filter'));
     const unwatched = $('#' + (isTv ? 'tv-unwatched' : 'unwatched-filter'));
     const playable = $('#' + (isTv ? 'tv-playable' : 'playable-filter'));
-    let sort = tabs.querySelector('.active')?.dataset.sort || 'all';
+    const maxRating = $('#' + (isTv ? 'tv-max-rating' : 'max-rating'));
+    const genreFilter = isTv ? null : $('#genre-filter');
+    let sort = query.get('sort') || 'all';
+    ratingFilter.value = query.get('minRating') || '';
+    maxRating.value = query.get('maxRating') || '';
+    unwatched.checked = query.get('unwatched') === 'true';
+    playable.checked = query.get('playable') === 'true';
+    if (genreFilter) {
+      if (![...genreFilter.options].some((option) => option.value === genre) && genre) {
+        genreFilter.add(new Option(genre, genre));
+      }
+      genreFilter.value = genre;
+    }
+    tabs.querySelectorAll('button').forEach((button) => button.classList.toggle('active', button.dataset.sort === sort));
+    const feedback = document.createElement('div');
+    feedback.className = 'list-feedback';
+    feedback.setAttribute('role', 'status');
+    results.before(feedback);
+    function persist() {
+      savePage({genre,region,sort,minRating:ratingFilter.value,maxRating:maxRating.value,
+        unwatched:unwatched.checked ? 'true' : '',playable:playable.checked ? 'true' : ''});
+    }
     let current = 0;
     let revision = 0;
     filters.querySelectorAll('button').forEach((button) =>
@@ -102,12 +131,15 @@
       if (region === '中国大陆' || region === '美国') params.regionGroup = region === '美国' ? 'western' : 'chinese';
       else if (region) params.region = region;
       if (genre) params.genre = genre;
+      if (maxRating.value) params.maxRating = maxRating.value;
       if (ratingFilter.value || sort === 'cold') params.minRating = Math.max(Number(ratingFilter.value), sort === 'cold' ? 7 : 0);
       if (sort === 'latest') params.sort = 'year_desc';
       if (sort === 'popular' || sort === 'rating_desc') params.sort = 'rating_desc';
       if (sort === 'cold') params.sort = 'year_asc';
       if (playable.checked) params.playable = true;
       if (unwatched.checked) params.unwatched = true;
+      persist();
+      feedback.innerHTML = '';
       more.disabled = true;
       if (!append) results.innerHTML = empty('正在加载…');
       try {
@@ -116,13 +148,14 @@
         const html = data.items.map(mediaCard).join('');
         if (append) results.insertAdjacentHTML('beforeend', html);
         else results.innerHTML = html || empty('没有符合条件的条目，请调整筛选。');
+        feedback.textContent = '共 ' + data.total + ' 条';
         current = next;
         more.hidden = next * 20 >= data.total;
       } catch (error) {
         if (request !== revision) return;
         if (error.status === 401) { G.loginHere(); return; }
-        if (append) alert(error.message);
-        else listingError(results, error);
+        more.hidden = true;
+        listingError(append ? feedback : results, error, () => draw(append));
       } finally {
         if (request === revision) more.disabled = false;
       }
@@ -145,6 +178,8 @@
       draw();
     });
     ratingFilter.addEventListener('change', () => draw());
+    maxRating.addEventListener('change', () => draw());
+    genreFilter?.addEventListener('change', () => { genre = genreFilter.value; draw(); });
     playable.addEventListener('change', () => draw());
     unwatched.addEventListener('change', () => draw());
     more.addEventListener('click', () => draw(true));
@@ -155,7 +190,9 @@
   }
 
   function movieResults({container, pagination, params, render, noResults, unwatched}) {
-    let current = positivePage(new URLSearchParams(location.search).get('page'));
+    const query = new URLSearchParams(location.search);
+    let current = positivePage(query.get('page'));
+    if (unwatched) unwatched.checked = query.get('unwatched') === 'true';
     let revision = 0;
     const restoreMarks = bindMarks(container, () => { if (unwatched?.checked) draw(); });
     async function draw() {
@@ -165,6 +202,12 @@
         if (unwatched?.checked) filters.set('unwatched', 'true');
         const data = await requestJson('/api/movies?' + filters);
         if (request !== revision) return;
+        if (!data.items.length && current > 1) {
+          current = Math.max(1, Math.ceil(data.total / 25));
+          savePage({page:current});
+          draw();
+          return;
+        }
         container.innerHTML = data.items.map(render).join('') || empty(noResults);
         pages(pagination,current,data.total,(next) => {
           current = next;
@@ -175,12 +218,13 @@
       } catch (error) {
         if (request !== revision) return;
         if (error.status === 401) { G.loginHere(); return; }
-        listingError(container,error);
+        pagination.innerHTML = '';
+        listingError(container,error,draw);
       }
     }
     unwatched?.addEventListener('change', () => {
       current = 1;
-      savePage({page:1});
+      savePage({page:1,unwatched:unwatched.checked ? 'true' : ''});
       draw();
     });
     draw();
@@ -236,8 +280,8 @@
         const params = new URLSearchParams({page:current,size:25,stars,mine:order === 'mine'});
         const data = await requestJson(path + '/reviews?' + params);
         if (request !== revision) return;
-        if (!data.items.length && data.total && current > 1) {
-          current = Math.ceil(data.total / 25);
+        if (!data.items.length && current > 1) {
+          current = Math.max(1, Math.ceil(data.total / 25));
           draw();
           return;
         }
@@ -246,7 +290,7 @@
         list.innerHTML = items.map((review) => `<article class="comment-row"><div class="avatar">${escapeHtml(review.author[0] || "影")}</div><div class="comment-body"><div class="meta"><strong>${escapeHtml(review.author)}</strong><span class="rating" aria-label="${review.stars} 星">${"★".repeat(review.stars)}</span><time datetime="${escapeHtml(review.createdAt)}">${escapeHtml(new Date(review.createdAt).toLocaleString("zh-CN"))}</time></div><p>${escapeHtml(review.content)}</p>${account?.id === review.userId ? `<div class="comment-actions"><button data-edit="${review.id}">修改</button><button data-delete="${review.id}">删除</button></div>` : ""}</div></article>`).join('') || empty('当前条件下没有短评。');
         pages($('#comments-pagination'),current,data.total,(next) => { current = next; draw(); });
       } catch (error) {
-        if (request === revision) listingError(list,error);
+        if (request === revision) { $('#comments-pagination').innerHTML = ''; listingError(list,error,draw); }
       }
     }
 
@@ -285,7 +329,7 @@
       } catch (error) {
         if (error.status === 404) openEditor(null);
         else if (error.status === 401) G.loginHere();
-        else alert(error.message);
+        else listingError($('#review-form-container'),error);
       }
     });
     $('#comment-sort').addEventListener('click', (event) => {
@@ -314,7 +358,7 @@
         draw();
       } catch (error) {
         if (error.status === 401) G.loginHere();
-        else alert(error.message);
+        else listingError($('#review-form-container'),error);
       } finally {
         button.disabled = false;
       }

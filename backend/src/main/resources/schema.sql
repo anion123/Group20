@@ -41,3 +41,6 @@ CREATE TABLE IF NOT EXISTS review (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
     UNIQUE (movie_id, user_id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_user_movie_watched ON user_movie(user_id, status, movie_id);
+CREATE INDEX IF NOT EXISTS idx_review_movie_created ON review(movie_id, created_at, id);

@@ -12,3 +12,18 @@
 .login-submit:focus-visible,
 .review-editor button:focus-visible,
 [data-status]:focus-visible { outline: 2px solid #26714a; outline-offset: 2px; }
+
+
+/* 第四阶段：筛选工具与短评密度对照。 */
+.filter-extra { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:12px 18px; margin:0 0 20px; }
+.filter-extra label { display:inline-flex; align-items:center; gap:5px; }
+.filter-extra select { padding:4px 6px; border:1px solid #ccc; border-radius:3px; background:#fff; }
+.list-feedback { color:#777; margin:12px 0; min-height:18px; }
+.list-feedback:empty { display:none; }
+.comment-tabs { border-bottom:1px solid #e5e5e5; padding-bottom:12px; }
+.comment-body .meta { display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; }
+.comment-row { border-bottom:1px solid #eee; padding:22px 0; }
+.comment-radio { border-bottom:1px solid #eee; padding-bottom:14px; }
+.comment-side-movie { line-height:1.9; }
+.error-box button { border:1px solid #bbb; padding:5px 14px; background:#fff; color:#3377aa; cursor:pointer; }
+#site-footer { max-width:1040px; margin:48px auto 24px; border-top:1px dashed #ddd; padding-top:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; color:#999; }

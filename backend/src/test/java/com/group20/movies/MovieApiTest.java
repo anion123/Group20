@@ -141,6 +141,21 @@ class MovieApiTest {
         http.perform(get("/api/movies/6/reviews")).andExpect(jsonPath("$.total").value(0));
     }
 
+    @Test
+    void combinesFiltersAndExcludesOnlyTheCurrentUsersWatchedMovies() throws Exception {
+        MockHttpSession first = login("demo1");
+        MockHttpSession second = login("demo2");
+        http.perform(put("/api/movies/1/status").session(first).contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"status\":\"WATCHED\"}")).andExpect(status().isOk());
+        String route = "/api/movies?keyword=Shawshank&region=美国&genre=犯罪&minRating=9&maxRating=10&sort=rating_desc&unwatched=true";
+        http.perform(get(route).session(first)).andExpect(status().isOk()).andExpect(jsonPath("$.total").value(0));
+        http.perform(get(route).session(second)).andExpect(status().isOk())
+                .andExpect(jsonPath("$.total").value(1)).andExpect(jsonPath("$.items[0].id").value(1));
+        http.perform(put("/api/movies/1/status").session(first).contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"status\":null}")).andExpect(status().isOk());
+        http.perform(get(route).session(first)).andExpect(jsonPath("$.total").value(1));
+    }
+
     private MockHttpSession login(String username) throws Exception {
         var request = http.perform(post("/api/session").contentType(MediaType.APPLICATION_JSON)
                         .content("""

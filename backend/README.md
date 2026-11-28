@@ -51,3 +51,9 @@ Movie 包含 `id`、`title`、`originalTitle`、`year`、`region`、`genres`、`
 | `PUT /api/movies/{id}/reviews/{reviewId}`、`DELETE /api/movies/{id}/reviews/{reviewId}` | 按编号编辑和删除。操作别人的短评返回 403。 |
 
 演示路线为首页 → 排行榜 → Top 250 翻页 → 搜索“给阿嬷的情书” → 详情 → 登录 → 想看／看过 → 全部短评 → 评分和发表。切换 `demo2` 可检查权限，重启服务后重新登录 `demo1` 可检查持久化。短评页支持最新和本人视图。豆瓣长影评页仅作为列表布局参考。
+
+## 第四阶段补充
+
+电影列表继续使用现有参数组合查询，未看过仅排除当前用户的 WATCHED。类型和最高评分现已接入选电影页面。筛选 URL 会保存地区、类型、评分上下限、排序、未看过和可播放条件。短评按电影、评论、当前账号共同限定写入目标。
+
+数据库初始化脚本用 CREATE INDEX IF NOT EXISTS 为观影排除和短评列表补建索引，已有数据保留。回归测试覆盖组合筛选与两个账号隔离。运行预览可使用 java -jar target/group20-backend-0.1.0.jar --server.port=8082。
